@@ -50,3 +50,5 @@ if __name__ == '__main__':
     print('7', tcell.step())
     print('8', tcell.step())
     print('9', tcell.step())
+    print('9', tcell.step())
+    print('9', tcell.step())
