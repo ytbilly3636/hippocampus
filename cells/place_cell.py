@@ -45,5 +45,5 @@ if __name__ == '__main__':
     import cv2
 
     img = cv2.resize(pcell._status, (300, 300), interpolation=cv2.INTER_NEAREST)
-    cv2.imshow('window', pcell._status)
+    cv2.imshow('window', img)
     cv2.waitKey(0)
