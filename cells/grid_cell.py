@@ -4,7 +4,7 @@ import sys
 import numpy as np
 
 
-class PlaceCell(object):
+class GridCell(object):
     def __init__(self, size=(10, 10)):
         if not len(size) == 2:
             sys.exit('size must be 2-dim tuple')
@@ -39,7 +39,7 @@ class PlaceCell(object):
 
 
 if __name__ == '__main__':
-    pcell = PlaceCell()
+    pcell = GridCell()
     pcell((5, 5))
 
     import cv2
