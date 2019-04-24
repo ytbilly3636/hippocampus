@@ -1,4 +1,4 @@
 # -*- coding:utf-8 -*-
 
-from place_cell import PlaceCell
-from time_cell import TimeCell
+from .grid_cell import GridCell
+from .time_cell import TimeCell

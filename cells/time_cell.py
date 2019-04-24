@@ -2,12 +2,14 @@
 
 import sys
 import numpy as np
+import copy
 
 
 class TimeCell(object):
     def __init__(self, cue_size, delay_time):
         self._cue_size = cue_size
         self._delay_time = delay_time
+        self._status = np.zeros((len(self._delay_time), self._cue_size), dtype=np.float32)
         self.reset()
 
     def reset(self):
@@ -18,11 +20,11 @@ class TimeCell(object):
         self._status = np.zeros((len(self._delay_time), self._cue_size), dtype=np.float32)
 
         for q in self._queue:
-            if self._time - q['time'] in self._delay_time:
+            if (self._time - q['time']) in self._delay_time:
                 self._status[self._delay_time.index(self._time - q['time']), :] = q['data']
 
-                if self._time - q['time'] == self._delay_time[-1]:
-                    self._queue.remove(q)
+            if (self._time - q['time']) > (self._delay_time[-1] + 1):
+                self._queue.remove(q)
 
         self._time += 1
         return self._status
@@ -30,8 +32,7 @@ class TimeCell(object):
     def cue_and_step(self, cue):
         if not len(cue) == self._cue_size:
             sys.exit('cue_size is differ from', self._cue_size)
-        self._queue.append({'data':cue.reshape(-1), 'time':self._time})
-
+        self._queue.append({'data':copy.deepcopy(cue.reshape(-1)), 'time':self._time})
         return self.step()
 
 

@@ -39,11 +39,11 @@ class GridCell(object):
 
 
 if __name__ == '__main__':
-    pcell = GridCell()
-    pcell((5, 5))
+    gcell = GridCell()
+    gcell((5, 5))
 
     import cv2
 
-    img = cv2.resize(pcell._status, (300, 300), interpolation=cv2.INTER_NEAREST)
+    img = cv2.resize(gcell._status, (300, 300), interpolation=cv2.INTER_NEAREST)
     cv2.imshow('window', img)
     cv2.waitKey(0)
