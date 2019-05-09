@@ -4,6 +4,7 @@ import sys
 import numpy as np
 import copy
 
+import gc
 
 class TimeCell(object):
     def __init__(self, cue_size, delay_time):
@@ -25,6 +26,7 @@ class TimeCell(object):
 
             if (self._time - q['time']) > (self._delay_time[-1] + 1):
                 self._queue.remove(q)
+                gc.collect()
 
         self._time += 1
         return self._status
