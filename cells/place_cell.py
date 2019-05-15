@@ -4,7 +4,7 @@ import sys
 import numpy as np
 
 
-class GridCell(object):
+class PlaceCell(object):
     def __init__(self, size=(10, 10)):
         if not len(size) == 2:
             sys.exit('size must be 2-dim tuple')
@@ -39,11 +39,11 @@ class GridCell(object):
 
 
 if __name__ == '__main__':
-    gcell = GridCell()
-    gcell((5, 5))
+    pcell = PlaceCell()
+    pcell((5, 5))
 
     import cv2
 
-    img = cv2.resize(gcell._status, (300, 300), interpolation=cv2.INTER_NEAREST)
+    img = cv2.resize(pcell._status, (300, 300), interpolation=cv2.INTER_NEAREST)
     cv2.imshow('window', img)
     cv2.waitKey(0)

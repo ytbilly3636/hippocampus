@@ -5,6 +5,6 @@
 !README.md
 !.gitignore
 !cells/__init__.py
-!cells/grid_cell.py
+!cells/place_cell.py
 !cells/time_cell.py
 !conjunctive.py

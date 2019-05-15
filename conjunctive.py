@@ -3,13 +3,13 @@
 import numpy as np
 import cv2
 
-from cells import TimeCell, GridCell
+from cells import TimeCell, PlaceCell
 
 
 class HPC(object):
     def __init__(self):
         self.tcell = TimeCell(cue_size=3, delay_time=[0])
-        self.gcell = GridCell(size=(20, 20))
+        self.pcell = PlaceCell(size=(20, 20))
 
         self.is_cue = False
         self.cue = None
@@ -20,12 +20,12 @@ class HPC(object):
 
     def conjunctive(self, position):
         t = self.tcell.cue_and_step(self.cue) if self.is_cue else self.tcell.step()
-        g = self.gcell(position)
+        p = self.pcell(position)
 
         self.is_cue = False
         self.cue = None
 
-        c = g.reshape(-1, 1) * t.reshape(1, -1)
+        c = p.reshape(-1, 1) * t.reshape(1, -1)
         return c
 
 
