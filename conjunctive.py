@@ -3,7 +3,7 @@
 import numpy as np
 import cv2
 
-from cells import TimeCell, PlaceCell
+from hippocampus.cells import TimeCell, PlaceCell
 
 
 class HPC(object):

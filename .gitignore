@@ -4,7 +4,8 @@
 
 !README.md
 !.gitignore
-!cells/__init__.py
-!cells/place_cell.py
-!cells/time_cell.py
+!hippocampus/__init__.py
+!hippocampus/cells/__init__.py
+!hippocampus/cells/place_cell.py
+!hippocampus/cells/time_cell.py
 !conjunctive.py
