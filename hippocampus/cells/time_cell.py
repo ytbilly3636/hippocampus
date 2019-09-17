@@ -11,6 +11,7 @@ class TimeCell(object):
         self._cue_size = cue_size
         self._delay_time = delay_time
         self._status = np.zeros((len(self._delay_time), self._cue_size), dtype=np.float32)
+        self._status_previous = np.zeros((len(self._delay_time), self._cue_size), dtype=np.float32)
         self.reset()
 
     def reset(self):
@@ -31,11 +32,26 @@ class TimeCell(object):
         self._time += 1
         return self._status
 
+    def step_decay(self, coef=0.95):
+        status = self.step()
+        if (status == 0).all():
+            self._status_previous = self._status_previous * coef
+            return self._status_previous
+        else:
+            self._status_previous = copy.deepcopy(status)
+            return status
+
     def cue_and_step(self, cue):
         if not len(cue) == self._cue_size:
             sys.exit('cue_size is differ from', self._cue_size)
         self._queue.append({'data':copy.deepcopy(cue.reshape(-1)), 'time':self._time})
         return self.step()
+
+    def cue_and_step_decay(self, cue):
+        if not len(cue) == self._cue_size:
+            sys.exit('cue_size is differ from', self._cue_size)
+        self._queue.append({'data':copy.deepcopy(cue.reshape(-1)), 'time':self._time})
+        return self.step_decay()
 
 
 if __name__ == '__main__':
